@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gowtham Sai G</title>
+  <meta name="description" content="Gowtham Sai G — a software engineer working at the edge of AI and real systems: reinforcement-learning environments, agent infrastructure, storage engines, and production backends." />
+  <meta name="author" content="Gowtham Sai G" />
+  <meta name="color-scheme" content="light dark" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Gowtham Sai G" />
+  <meta property="og:description" content="Software engineer building at the edge of AI and real-world systems." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b0e16'/%3E%3Ctext x='50' y='70' text-anchor='middle' font-family='Georgia,serif' font-size='56' fill='%2394a6ff'%3EG%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#top">Skip to content</a>
+
+  <div class="shell">
+    <!-- ── Masthead ─────────────────────────────────────────────── -->
+    <header class="masthead">
+      <div class="masthead__inner">
+        <a class="masthead__name" href="#top">Gowtham<br>Sai&nbsp;G</a>
+        <p class="masthead__role">Software Engineer</p>
+        <p class="masthead__loc">Bengaluru, India</p>
+
+        <nav class="index" aria-label="Primary">
+          <a href="#work"><span class="index__n">01</span><span class="index__t">Work</span></a>
+          <a href="#projects"><span class="index__n">02</span><span class="index__t">Projects</span></a>
+          <a href="#leadership"><span class="index__n">03</span><span class="index__t">Leadership</span></a>
+          <a href="#education"><span class="index__n">04</span><span class="index__t">Education</span></a>
+          <a href="#contact"><span class="index__n">05</span><span class="index__t">Contact</span></a>
+        </nav>
+
+        <div class="masthead__foot">
+          <button class="theme" id="themeToggle" type="button" aria-label="Toggle light or dark theme">
+            <span class="theme__dot" aria-hidden="true"></span>
+            <span class="theme__label">Dark</span>
+          </button>
+          <a class="masthead__resume" href="Gowtham-Sai-G.pdf" data-resume>Résumé, PDF</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Content ──────────────────────────────────────────────── -->
+    <main class="content" id="top">
+      <!-- Lede -->
+      <section class="lede">
+        <h1 class="lede__h reveal">I build AI systems that survive contact with the real&nbsp;world.</h1>
+        <p class="lede__p reveal">
+          Hey, I'm Gowtham, a software engineer in Bengaluru. What I actually enjoy is the
+          unglamorous gap between a research idea and something that runs: teaching an agent
+          to stop and ask before it deletes someone's work, getting a database to read fast
+          enough that nobody notices it, shipping the feature the night before it's due.
+        </p>
+        <p class="lede__p reveal">
+          Most recently, at Scaler AI&nbsp;Labs, I built reinforcement-learning environments and
+          agent infrastructure that frontier labs like OpenAI, Meta, and xAI used to train
+          their models. Before that I built fintech systems at Wealthy. For fun I've written a
+          storage engine in Go, shipped a few open-source tools, and once pulled off a
+          6,500-person college fest. I go deep when it counts, and I like finishing what I
+          start.
+        </p>
+        <div class="lede__cta reveal">
+          <a class="link" href="#work">See the work</a>
+          <a class="link" href="mailto:gowthamyadav022@gmail.com">Get in touch</a>
+        </div>
+      </section>
+
+      <!-- Work -->
+      <section class="block" id="work">
+        <header class="block__head reveal">
+          <span class="block__n">01</span>
+          <h2 class="block__title">Work</h2>
+        </header>
+
+        <article class="entry reveal">
+          <p class="entry__margin">Jan — May 2026</p>
+          <div class="entry__main">
+            <h3 class="entry__org">Scaler AI Labs</h3>
+            <p class="entry__role">Software Engineer · partnering with OpenAI, Meta, xAI</p>
+            <p class="entry__lead">
+              Built reinforcement-learning environments and the agent infrastructure that
+              frontier labs used to train and evaluate their models.
+            </p>
+            <ul class="entry__notes">
+              <li>Shipped <strong>five production RL environments</strong>: HelloSign (<strong>92.94%</strong> approval, the only intern on it), Shopify Admin Settings (the hardest module, delivered in <strong>4 days</strong> with the lowest QA count), Asana MCP (<strong>52 tasks at a perfect 1.0</strong>), Hootsuite, and MS Excel.</li>
+              <li>Wrote a distributed <strong>MCP server</strong> from scratch (Java / Python) at <strong>sub-200ms p99</strong> across concurrent tool-use, picked up by partner teams at OpenAI and xAI.</li>
+              <li>Architected <em>Pulse</em>, an activity-analytics platform serving <strong>20,000 users</strong> end to end (desktop → S3 → Celery / Redis → LLM → ClickHouse + Postgres); perceptual hashing on idle frames cut cost sharply.</li>
+              <li>Authored <strong>10K+ curated task suites</strong> with automated graders at <strong>98%+ accuracy</strong>, cutting review cycles <strong>50%</strong>; mentored two new joiners.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="entry reveal">
+          <p class="entry__margin">Mar — Aug 2025</p>
+          <div class="entry__main">
+            <h3 class="entry__org">Wealthy</h3>
+            <p class="entry__role">Software Development Engineer · Fintech</p>
+            <p class="entry__lead">Owned an internal CRM sitting behind <strong>₹4,000+ Cr</strong> in assets under management.</p>
+            <ul class="entry__notes">
+              <li>Led development of a platform supporting <strong>₹190+ Cr</strong> in monthly gross sales across <strong>7,700+ partners</strong>.</li>
+              <li>Designed and tuned <strong>GraphQL resolvers + REST</strong> on Postgres / Redis, cutting API p95 latency <strong>32%</strong> and lifting core-flow conversion <strong>37%</strong>.</li>
+              <li>Took the work past the ticket, proposing product-level changes directly to the PM.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="entry reveal">
+          <p class="entry__margin">Aug 24 — Feb 25</p>
+          <div class="entry__main">
+            <h3 class="entry__org">Wealthy</h3>
+            <p class="entry__role">Software Engineer, Intern · Fintech</p>
+            <p class="entry__lead">Built the CRM platform from an empty repository.</p>
+            <ul class="entry__notes">
+              <li>Set up the whole thing in React / Next.js, and the component and API patterns I chose were adopted by the full-time team.</li>
+              <li>Shipped modules used by <strong>20+ stakeholders</strong> across the company.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <!-- Projects -->
+      <section class="block" id="projects">
+        <header class="block__head reveal">
+          <span class="block__n">02</span>
+          <h2 class="block__title">Projects</h2>
+        </header>
+
+        <article class="entry reveal">
+          <p class="entry__margin">Top 9 · India</p>
+          <div class="entry__main">
+            <h3 class="entry__org">Viveka</h3>
+            <p class="entry__lead">
+              A reinforcement-learning environment that teaches AI agents to pause and ask
+              before doing something they can't undo.
+            </p>
+            <ul class="entry__notes">
+              <li>Scored by a deterministic six-part reward, with no LLM-as-judge. Trained Qwen-1.5B to <strong>45% of Claude Sonnet's hardest-tier score at 0.05% of the parameters</strong>.</li>
+              <li>Top 9 of <strong>70,000+</strong> at the Meta × Scaler OpenEnv hackathon; diagnosed and patched a HuggingFace TRL bug mid-training.</li>
+            </ul>
+            <p class="entry__foot">
+              <span class="entry__tech">Python · PyTorch · GRPO / TRL · Unsloth</span>
+              <a class="link" href="https://github.com/gowtham-sai-yadav/viveka-env" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="entry reveal">
+          <p class="entry__margin">Systems</p>
+          <div class="entry__main">
+            <h3 class="entry__org">Gravel</h3>
+            <p class="entry__lead">
+              An embeddable key-value storage engine in Go, built on an LSM-tree.
+            </p>
+            <ul class="entry__notes">
+              <li>Write-ahead log, SSTables, and compaction: the same design behind LevelDB and RocksDB.</li>
+              <li>My way of really understanding how a database works: by building one from the ground up.</li>
+            </ul>
+            <p class="entry__foot">
+              <span class="entry__tech">Go · LSM-tree · WAL</span>
+              <a class="link" href="https://github.com/gowtham-sai-yadav/gravel" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="entry reveal">
+          <p class="entry__margin">Open source</p>
+          <div class="entry__main">
+            <h3 class="entry__org">claude-teleport</h3>
+            <p class="entry__lead">
+              A single-binary Go CLI that moves your entire Claude Code state between
+              machines, across Linux, macOS, and Windows.
+            </p>
+            <ul class="entry__notes">
+              <li>Recovers and re-encodes machine-specific file paths so past sessions resume seamlessly on the other side.</li>
+              <li>Found and fixed a zip-slip vulnerability; CI cross-compiles five platform binaries.</li>
+            </ul>
+            <p class="entry__foot">
+              <span class="entry__tech">Go · net/http · GitHub Actions</span>
+              <a class="link" href="https://github.com/gowtham-sai-yadav/claude-teleport" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </div>
+        </article>
+
+        <p class="block__more reveal">
+          More on <a class="link" href="https://github.com/gowtham-sai-yadav" target="_blank" rel="noopener">GitHub</a>:
+          an RL environment for on-call incident response, a debate agent, a distributed
+          crawler, and a set of web-security write-ups.
+        </p>
+      </section>
+
+      <!-- Leadership -->
+      <section class="block" id="leadership">
+        <header class="block__head reveal">
+          <span class="block__n">03</span>
+          <h2 class="block__title">Leadership</h2>
+        </header>
+
+        <article class="entry reveal">
+          <p class="entry__margin">2025</p>
+          <div class="entry__main">
+            <h3 class="entry__org">Yugaantar</h3>
+            <p class="entry__role">Chairperson, SST's first student-led fest</p>
+            <p class="entry__lead">Ran the entire fest on a <strong>~₹55L budget</strong>, leading 21 HODs and 200+ organizers after two editions that never got off the ground.</p>
+            <ul class="entry__notes">
+              <li>Drove <strong>6,500+ registrations</strong> from 800+ colleges and nine podium finishes against teams from the IITs, NITs, and BITS.</li>
+              <li>Closed sponsors like Blinkit, Jio, and RedBull after the primary ones backed out. Covered in the Times of&nbsp;India; the fest's Instagram crossed <strong>3M+ views</strong>.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="entry reveal">
+          <p class="entry__margin">2023 — 25</p>
+          <div class="entry__main">
+            <h3 class="entry__org">Student Council</h3>
+            <p class="entry__role">President, Scaler School of Technology</p>
+            <p class="entry__lead">Built a process-driven operating structure for clubs and student initiatives, so things kept running even when any one person wasn't around.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- Education -->
+      <section class="block" id="education">
+        <header class="block__head reveal">
+          <span class="block__n">04</span>
+          <h2 class="block__title">Education</h2>
+        </header>
+
+        <article class="entry reveal">
+          <p class="entry__margin">2023 — 27</p>
+          <div class="entry__main">
+            <h3 class="entry__org">Scaler School of Technology</h3>
+            <p class="entry__role">Undergraduate degree in Computer Science · Bengaluru</p>
+          </div>
+        </article>
+
+        <article class="entry reveal">
+          <p class="entry__margin">2023 — 27</p>
+          <div class="entry__main">
+            <h3 class="entry__org">BITS Pilani</h3>
+            <p class="entry__role">Undergraduate degree in Computer Science · degree partner programme</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- Toolkit -->
+      <section class="block" id="stack">
+        <header class="block__head reveal">
+          <span class="block__n">—</span>
+          <h2 class="block__title">Toolkit</h2>
+        </header>
+        <dl class="stack reveal">
+          <div class="stack__row"><dt>Languages</dt><dd>Python · Go · Java · TypeScript · C++ · SQL</dd></div>
+          <div class="stack__row"><dt>AI &amp; ML</dt><dd>PyTorch · HuggingFace · TRL (GRPO / PPO / DPO / SFT) · Unsloth · RL environments · MCP</dd></div>
+          <div class="stack__row"><dt>Backend</dt><dd>FastAPI · Django · Spring Boot · Node · gRPC · GraphQL · Celery</dd></div>
+          <div class="stack__row"><dt>Data</dt><dd>PostgreSQL · ClickHouse · Redis · MongoDB</dd></div>
+          <div class="stack__row"><dt>Infrastructure</dt><dd>Docker · AWS · NGINX · CI/CD · Linux</dd></div>
+        </dl>
+      </section>
+
+      <!-- Contact -->
+      <section class="block block--contact" id="contact">
+        <header class="block__head reveal">
+          <span class="block__n">05</span>
+          <h2 class="block__title">Contact</h2>
+        </header>
+        <p class="contact__line reveal">Got a hard problem where AI meets real systems? I'd love to hear about&nbsp;it.</p>
+        <ul class="contact__links reveal">
+          <li><a class="link" href="mailto:gowthamyadav022@gmail.com">gowthamyadav022@gmail.com</a></li>
+          <li><a class="link" href="https://github.com/gowtham-sai-yadav" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a class="link" href="https://linkedin.com/in/gowtham-sai-yadav" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a class="link" href="https://x.com/gowthamsaiyadav" target="_blank" rel="noopener">X</a></li>
+        </ul>
+
+        <footer class="footer">
+          <span>Gowtham Sai&nbsp;G</span>
+          <span>© 2026 — built by hand</span>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
