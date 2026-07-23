@@ -88,7 +88,7 @@
   .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 34px; }
   .field { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,.05); border: 1px solid var(--space-line); border-radius: 999px; padding: 10px 10px 10px 20px; font-family: var(--mono); font-size: 14px; max-width: 100%; }
   .field .p { color: var(--signal); }
-  .field code { color: var(--on-space); white-space: nowrap; overflow-x: auto; }
+  .field code { color: var(--on-space); white-space: nowrap; overflow-x: auto; min-width: 0; }
   .btn { border: 0; cursor: pointer; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 15px; border-radius: 999px; background: var(--signal); color: #fff; transition: background .18s; }
   .btn:hover { background: var(--signal-deep); }
   .btn.copied { background: #2f7d4f; }
@@ -155,7 +155,7 @@
   /* install band */
   .band { background: var(--paper-2); }
   .igrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 46px; }
-  .icard { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .icard { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; min-width: 0; }
   .icard .os { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--mist); }
   .icard .line { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
   .icard code { font-family: var(--mono); font-size: 13.5px; flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; color: var(--ink); }
@@ -181,7 +181,11 @@
     .trio { grid-template-columns: 1fr; gap: 26px; }
     .card3 { padding-top: 18px; }
     .igrid { grid-template-columns: 1fr; }
-    .field { width: 100%; }
+    /* commands wrap instead of clipping on phones */
+    .field { width: 100%; align-items: flex-start; border-radius: 12px; }
+    .field code { white-space: normal; overflow-wrap: anywhere; overflow-x: visible; }
+    .icard .line { align-items: flex-start; }
+    .icard code { white-space: normal; overflow-wrap: anywhere; overflow-x: visible; }
     .demo { grid-template-columns: 1fr; }
     .conn { height: 46px; }
     .conn .rail { left: 50%; right: auto; top: 8px; bottom: 8px; width: 1px; height: auto; transform: none; }
@@ -429,13 +433,16 @@
       left.innerHTML = ""; right.innerHTML = ""; landed.classList.remove("show"); if (flyer) flyer.style.opacity = "0";
       typeLine(left, "$ claude-teleport export", live, function () {
         addLine(left, 'packed 28 projects &#8594; <span class="code">backup.tgz</span>', "dim");
-        wait(480, live, function () {
-          flyFile(demo, leftCard, rightCard, flyer, live, function () {
-            typeLine(right, "$ claude-teleport import backup.tgz", live, function () {
-              rightFinal(); landed.classList.add("show");
-              wait(4800, live, moveStart);
-            });
+        function toImport() {
+          typeLine(right, "$ claude-teleport import backup.tgz", live, function () {
+            rightFinal(); landed.classList.add("show");
+            wait(4800, live, moveStart);
           });
+        }
+        wait(480, live, function () {
+          // the parabola assumes side-by-side cards; on stacked mobile, skip it
+          if (window.innerWidth <= 820) { wait(280, live, toImport); }
+          else { flyFile(demo, leftCard, rightCard, flyer, live, toImport); }
         });
       });
     }
