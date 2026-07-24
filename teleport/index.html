@@ -152,6 +152,20 @@
   .tab[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .pane > h2 { margin-top: 30px; }
 
+  /* cockpit showcase (dark band) */
+  .cockpit { background: var(--space); color: var(--on-space); }
+  .cockpit .kicker { color: var(--signal); }
+  .cockpit h2 { color: var(--on-space); }
+  .cockpit h2 em { color: var(--signal); }
+  .cockpit .say { color: var(--on-space-mist); }
+  .cockpit .say code { color: var(--signal); background: rgba(255,90,54,.12); }
+  .shot { margin-top: 44px; border: 1px solid var(--space-line); border-radius: 14px; overflow: hidden; background: #0e0c17; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+  .shot .bar { display: flex; align-items: center; gap: 7px; padding: 11px 15px; border-bottom: 1px solid var(--space-line); }
+  .shot .bar .d { width: 11px; height: 11px; border-radius: 50%; background: var(--space-line); }
+  .shot .bar .d.r { background: #ff5f57; } .shot .bar .d.y { background: #febc2e; } .shot .bar .d.g { background: #28c840; }
+  .shot .bar .t { margin-left: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--on-space-mist); }
+  .shot img { display: block; width: 100%; height: auto; }
+
   /* install band */
   .band { background: var(--paper-2); }
   .igrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 46px; }
@@ -263,6 +277,18 @@
             <div class="tb"><div class="ln" id="m-right"></div><div class="landed" id="m-landed"><span class="k">restored</span> &nbsp;28 projects · 132 sessions · resume-ready</div></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="cockpit" class="cockpit">
+      <div class="wrap">
+        <div class="kicker rise">One command</div>
+        <h2 class="rise">Everything, on <em>one screen.</em></h2>
+        <p class="say rise">Run <code>claude-teleport</code> and it opens as a cockpit: your sessions in a searchable list, and a keypress to hand one to a teammate, pull one in, or back it all up. Press <code>?</code> and it tells you what every key does.</p>
+        <figure class="shot rise">
+          <div class="bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="t">claude-teleport</span></div>
+          <img src="cockpit.png" width="1180" height="720" loading="lazy" alt="The claude-teleport cockpit: an ascii teleport wordmark above a searchable session list, with send, share, receive, export, import and update along the bottom.">
+        </figure>
       </div>
     </section>
 
