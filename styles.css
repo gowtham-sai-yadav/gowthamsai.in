@@ -184,6 +184,20 @@ em { font-style: italic; }
 .block__n { font-family: var(--mono); font-size: .72rem; color: var(--accent); padding-top: .2rem; }
 .block__title { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.015em; }
 .block__more { margin-top: 2.25rem; color: var(--text-2); font-size: .96rem; line-height: 1.6; max-width: 62ch; }
+.block__intro { margin-top: -1.75rem; margin-bottom: 2.5rem; color: var(--text-2); font-size: 1rem; line-height: 1.65; max-width: 58ch; }
+
+/* inline link inside prose */
+.link-inline {
+  color: var(--accent); border-bottom: 1px solid transparent;
+  transition: border-color .3s var(--ease);
+}
+.link-inline:hover { border-color: var(--accent); }
+
+code {
+  font-family: var(--mono); font-size: .86em;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: 4px; padding: .06em .3em; color: var(--text);
+}
 
 /* ---- Entry (work / projects / leadership) ----------------- */
 .entry {
