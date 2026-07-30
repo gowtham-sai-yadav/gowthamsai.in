@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="entangle · Hand a live coding session to anyone">
 <meta name="twitter:description" content="Hand a live coding session to a teammate with three spoken words - Claude Code, OpenAI Codex, or opencode. Private, no account, end-to-end encrypted. Open source.">
 <meta name="twitter:image" content="https://gowthamsai.in/entangle/og.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='86'>🛰️</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><mask id='g' maskUnits='userSpaceOnUse' x='0' y='0' width='64' height='64'><rect width='64' height='64' fill='%23fff'/><circle cx='13.89' cy='32' r='7.7' fill='%23000'/><circle cx='50.11' cy='32' r='7.7' fill='%23000'/></mask><g fill='none' stroke='%23ff5a36' stroke-width='9.5' stroke-linecap='round'><path d='M7 54C7 13 57 13 57 54'/><path d='M7 10C7 51 57 51 57 10' mask='url(%23g)'/></g></svg>">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,8 +74,7 @@
   #sky { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .hero-nav { position: relative; z-index: 3; display: flex; align-items: center; justify-content: space-between; padding: 26px 0; }
   .brand { font-family: var(--mono); font-size: 15px; letter-spacing: 0.02em; display: flex; align-items: center; gap: 10px; }
-  .brand .beacon { width: 9px; height: 9px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 0 var(--signal); animation: beacon 2.6s ease-out infinite; }
-  @keyframes beacon { 0% { box-shadow: 0 0 0 0 rgba(255,90,54,.55);} 70%,100% { box-shadow: 0 0 0 12px rgba(255,90,54,0);} }
+  .brand .mark { width: 21px; height: 21px; display: block; color: var(--signal); flex: none; }
   .hero-nav nav { display: flex; gap: 26px; font-family: var(--mono); font-size: 13px; }
   .hero-nav nav a { color: var(--on-space-mist); text-decoration: none; }
   .hero-nav nav a:hover { color: var(--on-space); }
@@ -208,7 +207,6 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .rise, .has-js .rise { opacity: 1; transform: none; transition: none; }
-    .brand .beacon { animation: none; }
     .cur { animation: none; }
     .conn.go .pulse { animation: none; opacity: 0; }
   }
@@ -219,7 +217,20 @@
     <canvas id="sky"></canvas>
     <div class="wrap">
       <div class="hero-nav">
-        <div class="brand"><span class="beacon"></span> entangle</div>
+        <div class="brand">
+          <svg class="mark" viewBox="0 0 64 64" fill="none" role="img" aria-label="entangle">
+            <mask id="brand-gap" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+              <rect width="64" height="64" fill="#fff"/>
+              <circle cx="13.89" cy="32" r="7.7" fill="#000"/>
+              <circle cx="50.11" cy="32" r="7.7" fill="#000"/>
+            </mask>
+            <g stroke="currentColor" stroke-width="9.5" stroke-linecap="round">
+              <path d="M7 54C7 13 57 13 57 54"/>
+              <path d="M7 10C7 51 57 51 57 10" mask="url(#brand-gap)"/>
+            </g>
+          </svg>
+          entangle
+        </div>
         <nav>
           <a href="#install">Install</a>
           <a href="https://github.com/gowtham-sai-yadav/entangle">GitHub</a>
