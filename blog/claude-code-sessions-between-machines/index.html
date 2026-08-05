@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why you cannot copy a Claude Code session to another machine</title>
+<meta name="description" content="Claude Code stores every session against the absolute path of the folder it was made in. Here is what actually breaks when you copy ~/.claude to a new laptop, and how to fix it by hand.">
+<link rel="canonical" href="https://gowthamsai.in/blog/claude-code-sessions-between-machines/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why you cannot copy a Claude Code session to another machine">
+<meta property="og:description" content="Every session is pinned to the absolute path of the folder it was made in. What breaks, and how to fix it by hand.">
+<meta property="og:url" content="https://gowthamsai.in/blog/claude-code-sessions-between-machines/">
+<meta property="og:image" content="https://gowthamsai.in/entangle/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><mask id='g' maskUnits='userSpaceOnUse' x='0' y='0' width='64' height='64'><rect width='64' height='64' fill='%23fff'/><circle cx='13.89' cy='32' r='7.7' fill='%23000'/><circle cx='50.11' cy='32' r='7.7' fill='%23000'/></mask><g fill='none' stroke='%23ff5a36' stroke-width='9.5' stroke-linecap='round'><path d='M7 54C7 13 57 13 57 54'/><path d='M7 10C7 51 57 51 57 10' mask='url(%23g)'/></g></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --space:#12101d; --space-line:#2a2742; --paper:#ece7dd; --card:#f4efe6;
+    --ink:#211f2b; --mist:#6c6675; --line:#d5cdbe; --signal:#ff5a36; --signal-deep:#d5401f;
+    --serif:"Fraunces","Iowan Old Style",Georgia,serif;
+    --sans:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+       line-height:1.68;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+  header.top{border-bottom:1px solid var(--line);padding:20px 0;margin-bottom:56px}
+  header.top .wrap{display:flex;justify-content:space-between;align-items:center}
+  .brand{font-family:var(--mono);font-size:15px;color:var(--ink);text-decoration:none}
+  .brand b{color:var(--signal);font-weight:500}
+  header.top nav a{font-family:var(--mono);font-size:13px;color:var(--mist);text-decoration:none;margin-left:22px}
+  header.top nav a:hover{color:var(--signal)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--signal)}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.6vw,54px);line-height:1.06;
+     letter-spacing:-.015em;margin:18px 0 0;text-wrap:balance}
+  .meta{font-family:var(--mono);font-size:13px;color:var(--mist);margin-top:22px}
+  .lede{font-size:20px;color:#3b3746;margin-top:34px}
+  h2{font-family:var(--serif);font-weight:500;font-size:29px;line-height:1.2;margin:56px 0 14px;letter-spacing:-.01em}
+  h3{font-size:18px;font-weight:600;margin:34px 0 8px}
+  p{margin:16px 0}
+  a{color:var(--signal-deep)}
+  code{font-family:var(--mono);font-size:.87em;background:#e2dbcc;padding:2px 6px;border-radius:5px}
+  pre{background:var(--space);color:#e8e2d6;font-family:var(--mono);font-size:13.5px;line-height:1.62;
+      padding:20px 22px;border-radius:12px;overflow-x:auto;margin:24px 0}
+  pre code{background:none;padding:0;font-size:inherit;color:inherit}
+  .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--signal);
+        border-radius:10px;padding:18px 22px;margin:28px 0}
+  .note p{margin:0}
+  ul{padding-left:22px}
+  li{margin:9px 0}
+  hr{border:0;border-top:1px solid var(--line);margin:56px 0}
+  footer{border-top:1px solid var(--line);margin-top:72px;padding:34px 0 64px;color:var(--mist);font-size:14px}
+  footer a{color:var(--signal-deep)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><b>gowtham</b> sai</a>
+    <nav><a href="/">Home</a><a href="/entangle/">entangle</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <article>
+    <div class="eyebrow">Claude Code</div>
+    <h1>Why you cannot copy a Claude Code session to another machine</h1>
+    <div class="meta">6 August 2026 &middot; 6 min read</div>
+
+    <p class="lede">You get a new laptop, copy <code>~/.claude</code> across, run
+    <code>claude --resume</code>, and either nothing shows up or the conversation opens against
+    files that aren't there. I lost an afternoon to this before I worked out what was going on, and
+    the reason turns out to be much duller than the symptom suggests.</p>
+
+    <h2>Where sessions actually live</h2>
+
+    <p>Everything Claude Code knows about you sits under <code>~/.claude</code>, and the part that
+    matters here is <code>projects/</code>:</p>
+
+<pre><code>~/.claude/
+  .claude.json                 # config, including a per-project map
+  projects/
+    -Users-alex-work-dashboard/
+      44ab90ee-cc33-4d22-....jsonl
+      8e3d21d1-1a90-4f77-....jsonl
+    -Users-alex-work-acme-api/
+      1f9c77a2-bb22-4e11-....jsonl</code></pre>
+
+    <p>That folder name isn't a hash or an id, which is the first surprise. It's the absolute path
+    of your project with the slashes swapped for hyphens, so <code>/Users/alex/work/dashboard</code>
+    becomes <code>-Users-alex-work-dashboard</code>. When you run <code>claude --resume</code>,
+    Claude Code encodes whatever directory you're standing in and goes looking for a folder with
+    that name. Each <code>.jsonl</code> inside is a single session, one JSON object per line,
+    appended as you talk.</p>
+
+    <h2>Three things break when you copy it</h2>
+
+    <p>The folder name is the obvious one. Your username is different on the new machine, or the
+    project lives somewhere else entirely, and now <code>-Users-alex-work-dashboard</code> describes
+    a path that doesn't exist. Claude Code encodes your current directory, finds no folder matching
+    it, and shows you an empty history. Nothing is corrupted and nothing is lost, it's just looking
+    in a place you didn't put anything.</p>
+
+    <p>Rename the folder and you hit the second problem, which is that every line of the transcript
+    carries the old path inside it:</p>
+
+<pre><code>{"type":"user","cwd":"/Users/alex/work/dashboard","message":{...}}</code></pre>
+
+    <p>So the session appears in the list and opens, but the conversation still believes it's
+    running somewhere it isn't. Anything that referred to a file resolves against a directory that
+    went away with your old laptop. Then there's <code>.claude.json</code>, which keeps its own
+    <code>projects</code> map keyed by absolute path and holding per-project state, so it needs the
+    same treatment or the session turns up without the settings that surrounded it.</p>
+
+    <div class="note">
+      <p>Which is really one problem wearing three hats: a session isn't portable data, it's data
+      plus an assumption about where the filesystem is. Everything below follows from that.</p>
+    </div>
+
+    <h2>Fixing it by hand</h2>
+
+    <p>None of this is hard, it's just tedious, and if you're moving one project you may as well do
+    it manually. Say you're going from <code>/Users/alex/work/dashboard</code> on a Mac to
+    <code>/home/sam/dev/dashboard</code> on a Linux box:</p>
+
+<pre><code># 1. copy the project folder, renamed for the new path
+cp -R "~/.claude/projects/-Users-alex-work-dashboard" \
+      "~/.claude/projects/-home-sam-dev-dashboard"
+
+# 2. rewrite the cwd recorded inside every transcript
+cd ~/.claude/projects/-home-sam-dev-dashboard
+sed -i '' 's#/Users/alex/work/dashboard#/home/sam/dev/dashboard#g' *.jsonl
+
+# 3. re-key the project entry in .claude.json
+#    (open it and rename the key under "projects")</code></pre>
+
+    <p><code>cd</code> into the project on the new machine, run <code>claude --resume</code>, and
+    your history is back. Your login won't come across and shouldn't, since credentials are bound to
+    the machine that issued them, so log in once before you resume.</p>
+
+    <h2>Why that sed line is a trap</h2>
+
+    <p>The moment Windows is involved at either end, the replacement above silently does nothing,
+    and it took me longer than I'd like to admit to see why. Transcripts are JSON, and JSON escapes
+    backslashes, so the path in the file doesn't look like the path you typed:</p>
+
+<pre><code>on disk:            "cwd":"C:\\Users\\alex\\work\\dashboard"
+what you searched:  C:\Users\alex\work\dashboard</code></pre>
+
+    <p>Doubled in the file, single in your pattern, no match, no error, and a transcript that looks
+    rewritten until you actually open it. The fix is to build both halves of the replacement by JSON
+    encoding the paths first, which gives you exactly the escaped form the file contains. On Unix
+    the escaped form is identical to the raw one, so the same code is correct going either
+    direction, which is the sort of thing you only notice once it has already bitten you.</p>
+
+    <p>After that come the smaller ones, and there are more than you'd expect. Paths turn up inside
+    message bodies as well as in <code>cwd</code>. macOS is case insensitive and Linux isn't. A
+    project that lived under a temp directory on the old machine is meaningless on the new one. And
+    if something already exists at the destination you have to decide between merging and
+    overwriting, because overwriting quietly is how people lose conversations they wanted to
+    keep.</p>
+
+    <h2>Codex and opencode store it differently again</h2>
+
+    <p>If you've got more than one agent on the go, none of the above transfers, and each one fails
+    in its own way.</p>
+
+    <p><strong>Codex</strong> writes a "rollout" per conversation to
+    <code>$CODEX_HOME/sessions/YYYY/MM/DD/rollout-&lt;timestamp&gt;-&lt;uuid&gt;.jsonl</code>, with
+    <code>$CODEX_HOME</code> defaulting to <code>~/.codex</code>. The project path lives in a
+    <code>cwd</code> field inside the file, same as Claude Code, but the layout works against you in
+    two ways. Sessions are bucketed by date rather than by project, so there's no folder to rename
+    and no way to find everything belonging to one repo without opening every file and reading it.
+    And some rollouts are zstd compressed, which means <code>grep</code> and <code>sed</code> skip
+    straight past them without complaining. If you're doing this by hand, decompress first or you'll
+    convince yourself the sessions aren't there.</p>
+
+    <p>One more thing worth knowing if you go digging: the same conversation is recorded twice in
+    each rollout. <code>response_item</code> lines are the model-facing history and
+    <code>event_msg</code> lines are a parallel stream for the UI. None of this layout is documented
+    upstream, so everything I know about it came from reading real rollout files against the Codex
+    source.</p>
+
+    <p><strong>opencode</strong> skips files altogether and keeps sessions in SQLite, normally at
+    <code>~/.local/share/opencode/opencode.db</code>, with the project path in a
+    <code>directory</code> column on the sessions table. That makes the text-editing approach
+    useless, since there's nothing to <code>sed</code>, and it makes writing to the file directly a
+    bad idea while opencode might have it open. The safer route is opencode's own CLI, which will
+    run SQL for you:</p>
+
+<pre><code>opencode db "UPDATE session SET directory = '/home/sam/dev/dashboard'
+             WHERE directory = '/Users/alex/work/dashboard'"</code></pre>
+
+    <p>Back up the database first. It's one file, so a copy costs nothing and an UPDATE without a
+    WHERE clause is the kind of mistake you only make once.</p>
+
+    <p>Same conceptual problem three times over, with three unrelated storage shapes to learn and
+    three different ways to get it wrong.</p>
+
+    <h2>The tool I built for this</h2>
+
+    <p>I got tired of doing the manual version and wrote
+    <a href="https://github.com/gowtham-sai-yadav/entangle">entangle</a>, a single Go binary that
+    handles the rewriting and moves sessions between machines. Handing one to a teammate goes over
+    <a href="https://magic-wormhole.readthedocs.io/">magic-wormhole</a>, so what you exchange is
+    three words rather than a file:</p>
+
+<pre><code>you:   entangle send &lt;session-id&gt;
+       -&gt; 4-october-stormy
+
+them:  entangle receive 4-october-stormy</code></pre>
+
+    <p>It lands in their project with every path rewritten for their machine and their operating
+    system, the transfer is encrypted end to end, nothing is uploaded anywhere and there's no
+    account involved, and likely secrets are masked on the way out. If you're moving your own
+    history to a new laptop instead, <code>entangle export</code> and <code>entangle import</code>
+    do the same rewriting in bulk. It reads Claude Code, Codex and opencode.</p>
+
+    <h2>What it doesn't do</h2>
+
+    <p>Three limits worth stating plainly, because they come up every time. Whole-machine export
+    only reads the Claude Code layout so far, though sharing a single session works across all
+    three tools. You can't open a Claude Code session inside Codex, and that one isn't a roadmap
+    item so much as a thing I decided not to fake: assistant turns carry reasoning content that's
+    opaque or signed per vendor, and inventing it gives you a transcript that reads authoritatively
+    and misrepresents what the model actually did. And the secret masking matches credential shapes
+    I could enumerate, which means it will miss anything with no distinctive format, which is why
+    the bundle stays a file you can open and read before you trust it.</p>
+
+    <hr>
+
+    <p>Source is at <a href="https://github.com/gowtham-sai-yadav/entangle">github.com/gowtham-sai-yadav/entangle</a>,
+    MIT licensed, one binary on macOS, Linux and Windows. If your team runs into this differently to
+    how mine did, I'd like to hear about it.</p>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="/">gowthamsai.in</a> &middot; <a href="/entangle/">entangle</a> &middot;
+    <a href="https://github.com/gowtham-sai-yadav">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>
