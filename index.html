@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gowtham Sai G</title>
-  <meta name="description" content="Gowtham Sai G — AI and systems engineer. Three merged fixes in HuggingFace TRL, reinforcement-learning environments for frontier labs, and entangle, a Go CLI for moving coding-agent sessions between machines." />
+  <meta name="description" content="Gowtham Sai G — AI research engineer at LH2 AI Labs, building pipelines that turn real codebases into Terminal-Bench, SWE-bench Pro, DeepSWE, and SWE-sweep tasks for AI coding agents. Five merged pull requests across HuggingFace, EleutherAI, and Unsloth." />
   <meta name="author" content="Gowtham Sai G" />
   <meta name="color-scheme" content="dark light" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Gowtham Sai G" />
-  <meta property="og:description" content="AI and systems engineer building at the edge of AI and real-world systems." />
+  <meta property="og:description" content="AI research engineer at LH2 AI Labs, building benchmark and RL task pipelines for AI coding agents." />
   <meta property="og:url" content="https://gowthamsai.in" />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b0e16'/%3E%3Ctext x='50' y='70' text-anchor='middle' font-family='Georgia,serif' font-size='56' fill='%2394a6ff'%3EG%3C/text%3E%3C/svg%3E" />
@@ -29,7 +29,7 @@
     <header class="masthead">
       <div class="masthead__inner">
         <a class="masthead__name" href="#top">Gowtham<br>Sai&nbsp;G</a>
-        <p class="masthead__role">AI &amp; Systems Engineer</p>
+        <p class="masthead__role">AI Research Engineer</p>
         <p class="masthead__loc">Bengaluru, India</p>
 
         <nav class="index" aria-label="Primary">
@@ -57,18 +57,21 @@
       <section class="lede">
         <h1 class="lede__h reveal">I build AI systems that survive contact with the real&nbsp;world.</h1>
         <p class="lede__p reveal">
-          Hey, I'm Gowtham, an engineer in Bengaluru. What I actually enjoy is the unglamorous
-          gap between a research idea and something that runs: teaching an agent to stop and ask
-          before it does damage, tracing a training collapse down to a bug in the framework
-          everyone else is using, getting a storage engine to survive a crash mid-write.
+          Hey, I'm Gowtham, an engineer in Bengaluru. I like the gap between a research idea and
+          something people will actually pay for: working out what the customer needs first, then
+          building it so it holds up. That has meant ML training fixes, evaluation infrastructure,
+          fintech product, a storage engine, and once a ₹55L college fest. I'm at my best dropped
+          into whatever is most broken.
         </p>
         <p class="lede__p reveal">
-          Most recently I built reinforcement-learning environments and LLM infrastructure at
-          Scaler AI&nbsp;Labs, delivered to frontier-lab clients including OpenAI, xAI, and Meta.
-          Before that I owned a fintech CRM at Wealthy sitting behind ₹4,000&nbsp;Cr in assets. On
-          my own time I debug the LLM stack in public, with <strong>three fixes merged into
-          HuggingFace TRL</strong>, and I write systems software from scratch because that is how I
-          actually learn it.
+          Right now I'm an AI research engineer at LH2 AI&nbsp;Labs. Frontier AI labs buy benchmark
+          and RL tasks to train and evaluate their coding agents, and I build the pipelines that
+          produce them at scale: <strong>250+ Terminal-Bench tasks</strong> so far, plus SWE-bench
+          Pro, DeepSWE, and SWE-sweep tasks. Before that I built RL environments at Scaler AI&nbsp;Labs for
+          frontier-lab clients including OpenAI, xAI, and Meta, and owned a fintech CRM at Wealthy
+          behind ₹4,000&nbsp;Cr in assets. On my own time I debug the LLM stack in public, with
+          <strong>five merged pull requests across HuggingFace, EleutherAI, and Unsloth</strong>,
+          and I write systems software from scratch because that is how I actually learn it.
         </p>
         <div class="lede__cta reveal">
           <a class="link" href="#work">See the work</a>
@@ -84,13 +87,36 @@
         </header>
 
         <article class="entry reveal">
+          <p class="entry__margin">Aug 2026 — now</p>
+          <div class="entry__main">
+            <h3 class="entry__org">LH2 AI Labs</h3>
+            <p class="entry__role">AI Research Engineer · full-time</p>
+            <p class="entry__lead">
+              Frontier AI labs buy benchmark and RL tasks to train and evaluate their coding agents,
+              and those deals hinge on two things: volume and quality. I build the pipelines that
+              deliver both, end to end, from a raw codebase to a containerised, graded task a lab
+              can use.
+            </p>
+            <ul class="entry__notes">
+              <li>Built end-to-end task-generation pipelines in four formats: <strong>Terminal-Bench</strong>, <strong>SWE-bench Pro</strong>, <strong>DeepSWE</strong>, and <strong>SWE-sweep</strong>. They moved task creation from hand-built one-offs to something that runs at scale, and have produced <strong>250+ Terminal-Bench tasks</strong> so far.</li>
+              <li>Turned private repositories into locked-down, reproducible evaluation environments, so codebases that could not be used before became sellable tasks. The hardest one depended on a package that only existed on a private registry; I rebuilt it from the source tag and vendored it, then proved it with a clean install of <strong>822 packages</strong> and a type check that exits clean.</li>
+              <li>A task a model can game is worthless to the lab buying it, so I hardened tasks against cheating. I caught a model "passing" by abusing an open sandbox control port, and found a shortcut hidden in a template shared by about 20 tasks. Every task now clears an automatic quality gate before it ships.</li>
+              <li>I also turned what I found into decisions for the team: I wrote the task pitch documents and the platform-issue reports my lead used, alongside <strong>42 merged pull requests</strong> across the team's pipeline and evaluation repositories in my first three months.</li>
+            </ul>
+            <p class="entry__foot">
+              <span class="entry__tech">Python · Docker · Daytona sandboxes · AWS · Claude Code · Codex</span>
+            </p>
+          </div>
+        </article>
+
+        <article class="entry reveal">
           <p class="entry__margin">Jan — May 2026</p>
           <div class="entry__main">
             <h3 class="entry__org">Scaler AI Labs</h3>
             <p class="entry__role">AI Engineer, Internship · clients: OpenAI, xAI, Meta</p>
             <p class="entry__lead">
-              Built reinforcement-learning environments and LLM infrastructure delivered
-              straight to frontier-lab clients.
+              Shipped the reinforcement-learning environments and LLM infrastructure that
+              frontier-lab clients paid for, on their deadlines.
             </p>
             <ul class="entry__notes">
               <li>Delivered <strong>5 LLM agent environments</strong> (Shopify Admin, HelloSign, Asana MCP, Hootsuite, MS Excel). I drove the requirement calls myself to turn vague briefs into scoped specs, then hit hard external deadlines. <strong>Asana MCP validated at a perfect 1.0 across 52 tasks</strong>; HelloSign cleared client QA at <strong>92.94%</strong>.</li>
@@ -111,7 +137,7 @@
               <strong>₹4,000+ Cr</strong> in assets under management.
             </p>
             <ul class="entry__notes">
-              <li>Sat with the PM and ops users, turned their workflow complaints into shipped changes, and <strong>lifted conversion 37%</strong>.</li>
+              <li>Sat with the PM and ops users, turned their workflow complaints into shipped changes, and <strong>lifted conversion 37%</strong>. For a distribution business, that conversion is revenue.</li>
               <li>Tuned GraphQL resolvers and backend integrations to cut <strong>API latency 32%</strong> under peak load.</li>
               <li>Built the CRM's first version from an empty repository as an intern (React, Next.js, REST); the component and API patterns I set were adopted by the full-time team.</li>
             </ul>
@@ -151,7 +177,7 @@
         </article>
 
         <article class="entry reveal">
-          <p class="entry__margin">21 stars</p>
+          <p class="entry__margin">28 stars</p>
           <div class="entry__main">
             <h3 class="entry__org">entangle</h3>
             <p class="entry__lead">
@@ -161,7 +187,7 @@
             <ul class="entry__notes">
               <li>Run <code>send</code>, read out three words, and the other side runs <code>receive</code>. The transfer is end-to-end encrypted and direct, with no account and no server in the middle, and secrets are scrubbed before anything leaves the machine.</li>
               <li>Sessions are pinned to absolute project paths, so the hard part is recovering each project's true path and rewriting every stored path for the target OS. Works with Claude Code, Codex, and opencode.</li>
-              <li><strong>16 releases</strong>, a Homebrew tap, a VS Code extension, one-line install, and self-update. Fixed a user-reported Gatekeeper block and a <strong>zip-slip vulnerability</strong>, both covered by regression tests.</li>
+              <li><strong>17 releases</strong>, a Homebrew tap, a VS Code extension, one-line install, and self-update. Fixed a user-reported Gatekeeper block and a <strong>zip-slip vulnerability</strong>, both covered by regression tests.</li>
             </ul>
             <p class="entry__foot">
               <span class="entry__tech">Go · GoReleaser · GitHub Actions</span>
@@ -173,10 +199,10 @@
         </article>
 
         <article class="entry reveal">
-          <p class="entry__margin">In review</p>
+          <p class="entry__margin">2 merged</p>
           <div class="entry__main">
             <h3 class="entry__org">EleutherAI &amp; Unsloth</h3>
-            <p class="entry__lead">Two open pull requests in the evaluation and fine-tuning stack.</p>
+            <p class="entry__lead">Two more merged pull requests, in the evaluation and fine-tuning stack.</p>
             <ul class="entry__notes">
               <li><a class="link-inline" href="https://github.com/EleutherAI/lm-evaluation-harness/pull/3950" target="_blank" rel="noopener">lm-evaluation-harness #3950</a>: the <strong>67-subject TMMLU+ benchmark</strong> stopped loading entirely on <code>datasets&nbsp;&gt;=&nbsp;4</code> because it pointed at a script dataset. Repointing it at a parquet-native mirror fixes 66 subjects in one line; I proved parity by diffing git blob hashes across all <strong>267 files</strong>.</li>
               <li><a class="link-inline" href="https://github.com/unslothai/notebooks/pull/306" target="_blank" rel="noopener">unslothai/notebooks #306</a>: added a SmolLM3 conversational fine-tuning notebook.</li>
@@ -275,7 +301,9 @@
 
         <p class="block__more reveal">
           Also on <a class="link" href="https://github.com/gowtham-sai-yadav" target="_blank" rel="noopener">GitHub</a>:
-          a <strong>credit scorecard</strong> with a fairness audit and drift monitoring, a
+          <strong>swe-benchmark-pipeline</strong>, which turns any Python repo into execution-validated
+          benchmark tasks for coding agents; <strong>Rydr</strong>, a scenic-routing app for
+          motorcycle riders; a <strong>credit scorecard</strong> with a fairness audit and drift monitoring, a
           <strong>DSA tracker</strong> with spaced repetition, <strong>portdoctor</strong> on PyPI,
           a Semgrep <strong>secure code review</strong>, and write-ups for 24 web-security labs.
         </p>
@@ -349,11 +377,11 @@
           <h2 class="block__title">Toolkit</h2>
         </header>
         <dl class="stack reveal">
-          <div class="stack__row"><dt>LLMs &amp; Agents</dt><dd>Tool-use agents · MCP · RAG · LangGraph · LLM evals and deterministic graders · fine-tuning (TRL GRPO, LoRA / QLoRA) · PyTorch · cost and latency tuning</dd></div>
+          <div class="stack__row"><dt>LLMs &amp; Agents</dt><dd>Benchmark and RL task design (Terminal-Bench, SWE-bench Pro, DeepSWE) · tool-use agents · MCP · RAG · LangGraph · LLM evals and deterministic graders · fine-tuning (TRL GRPO, LoRA / QLoRA) · PyTorch · cost and latency tuning</dd></div>
           <div class="stack__row"><dt>Languages</dt><dd>Python · Go · Java · TypeScript · C++ · SQL</dd></div>
           <div class="stack__row"><dt>Backend</dt><dd>FastAPI · Django · Spring Boot · Node · REST · GraphQL · gRPC · Celery</dd></div>
           <div class="stack__row"><dt>Data</dt><dd>PostgreSQL · ClickHouse · Redis · MongoDB</dd></div>
-          <div class="stack__row"><dt>Infrastructure</dt><dd>Docker · AWS · NGINX · CI/CD · Linux · Playwright</dd></div>
+          <div class="stack__row"><dt>Infrastructure</dt><dd>Docker · Daytona · AWS · NGINX · CI/CD · Linux · Playwright</dd></div>
         </dl>
       </section>
 
